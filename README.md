@@ -108,7 +108,7 @@ var cat = new xmler.Element('cat');
 var xml = cat.getXML(); // Your element as an XML string
 ```
 
-## Running Tests
+### Running Tests
 Tests are written using mocha and chai and can be run through gulp.
 
 ```

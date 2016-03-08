@@ -30,7 +30,7 @@ Element.prototype.addElement = function (element) {
 
 // Adds an array of child elements to the elements array.
 Element.prototype.addElements = function (elements) {
-  this.elements.concat(elements);
+  this.elements = this.elements.concat(elements);
 };
 
 // Builds an XML string for the element by iterating over all the attributes

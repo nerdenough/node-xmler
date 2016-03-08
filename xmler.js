@@ -12,7 +12,7 @@ var Element = function (name, body) {
   this.name = name;
   this.body = body;
   this.attributes = [];
-  this.elements = [];
+  this.children = [];
 };
 
 // Adds a single attribute to the attributes array.
@@ -25,14 +25,14 @@ Element.prototype.addAttributes = function (attributes) {
   this.attributes = this.attributes.concat(attributes);
 };
 
-// Adds a single child element to the elements array.
+// Adds a single child element to the children array.
 Element.prototype.addElement = function (element) {
-  this.elements.push(element);
+  this.children.push(element);
 };
 
-// Adds an array of child elements to the elements array.
+// Adds an array of child elements to the children array.
 Element.prototype.addElements = function (elements) {
-  this.elements = this.elements.concat(elements);
+  this.children = this.children.concat(elements);
 };
 
 // Builds an XML string for the element by iterating over all the attributes
@@ -44,18 +44,19 @@ Element.prototype.getXML = function () {
     xml += ' ' + attribute.key + '="' + attribute.value + '"';
   });
 
-  xml += this.elements.length || this.body ? '>' : '/>';
+  xml += this.children.length || this.body ? '>' : '/>';
   xml += this.body ? this.body : '';
 
-  this.elements.forEach(function (element) {
+  this.children.forEach(function (element) {
     xml += element.getXML();
   });
 
-  xml += this.elements.length || this.body ? '</' + this.name + '>' : '';
+  xml += this.children.length || this.body ? '</' + this.name + '>' : '';
 
   return xml;
 };
 
+// Exports Element
 module.exports = {
   Element: Element
 };

@@ -88,31 +88,31 @@ describe('Element', function () {
   });
 
   describe('#addElement', function () {
-    it('should add a single element to the elements array', function () {
+    it('should add a single element to the children array', function () {
       var element = new xmler.Element('element');
       var child = new xmler.Element('child');
 
       element.addElement(child);
 
-      expect(element.elements[0]).to.equal(child);
-      expect(element.elements.length).to.equal(1);
+      expect(element.children[0]).to.equal(child);
+      expect(element.children.length).to.equal(1);
     });
 
-    it('should add lots of elements to the elements array', function () {
+    it('should add lots of children to the children array', function () {
       var element = new xmler.Element('element');
 
       for (var i = 0; i < 100; i++) {
         var child = new xmler.Element('child');
         element.addElement(child);
-        expect(element.elements[i]).to.equal(child);
+        expect(element.children[i]).to.equal(child);
       }
 
-      expect(element.elements.length).to.equal(100);
+      expect(element.children.length).to.equal(100);
     });
   });
 
   describe('#addElements', function () {
-    it('should add an array of elements onto an empty elements array', function () {
+    it('should add an array of children onto an empty children array', function () {
       var element = new xmler.Element('element');
       var children = [
         new xmler.Element('child1'),
@@ -122,13 +122,13 @@ describe('Element', function () {
 
       element.addElements(children);
 
-      expect(element.elements[0]).to.equal(children[0]);
-      expect(element.elements[1]).to.equal(children[1]);
-      expect(element.elements[2]).to.equal(children[2]);
-      expect(element.elements.length).to.equal(3);
+      expect(element.children[0]).to.equal(children[0]);
+      expect(element.children[1]).to.equal(children[1]);
+      expect(element.children[2]).to.equal(children[2]);
+      expect(element.children.length).to.equal(3);
     });
 
-    it('should add an array of elements onto an existing elements array', function () {
+    it('should add an array of children onto an existing children array', function () {
       var element = new xmler.Element('element');
       var child1 = new xmler.Element('child1');
       var child2 = new xmler.Element('child2');
@@ -144,9 +144,9 @@ describe('Element', function () {
       element.addElement(child3);
       element.addElements(children);
 
-      expect(element.elements[0]).to.equal(child1);
-      expect(element.elements[3]).to.equal(children[0]);
-      expect(element.elements.length).to.equal(6);
+      expect(element.children[0]).to.equal(child1);
+      expect(element.children[3]).to.equal(children[0]);
+      expect(element.children.length).to.equal(6);
     });
   });
 

@@ -9,6 +9,12 @@ describe('Element', function () {
       var element = new xmler.Element('element');
       expect(element.name).to.equal('element');
     });
+
+    it('should set the element name and body content', function () {
+      var element = new xmler.Element('element', 'hello world');
+      expect(element.name).to.equal('element');
+      expect(element.body).to.equal('hello world');
+    });
   });
 
   describe('#addAttribute', function () {
@@ -103,6 +109,11 @@ describe('Element', function () {
       expect(element.getXML()).to.equal('<element/>');
     });
 
+    it('should convert an element with body content to xml', function () {
+      var element = new xmler.Element('element', 'hello world');
+      expect(element.getXML()).to.equal('<element>hello world</element>');
+    });
+
     it('should convert an element with attributes to xml', function () {
       var element = new xmler.Element('element');
       element.addAttribute('key', 'value');
@@ -139,6 +150,25 @@ describe('Element', function () {
       var answer = '<element key="value">';
       answer += '<child key="value">';
       answer += '<grandchild key="value"/>';
+      answer += '</child>';
+      answer += '</element>';
+      expect(element.getXML()).to.equal(answer);
+    });
+
+    it('should convert an element with nested attributes, children and body content to xml', function () {
+      var element = new xmler.Element('element', 'hello world');
+      var child = new xmler.Element('child', 'foo');
+      var grandchild = new xmler.Element('grandchild', 'bar');
+
+      grandchild.addAttribute('key', 'value');
+      child.addAttribute('key', 'value');
+      child.addElement(grandchild);
+      element.addAttribute('key', 'value');
+      element.addElement(child);
+
+      var answer = '<element key="value">hello world';
+      answer += '<child key="value">foo';
+      answer += '<grandchild key="value">bar</grandchild>';
       answer += '</child>';
       answer += '</element>';
       expect(element.getXML()).to.equal(answer);

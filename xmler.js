@@ -8,8 +8,9 @@
 
 // Creates the element with a specified name and initialises the arrays for
 // attributes and child elements.
-var Element = function (name) {
+var Element = function (name, body) {
   this.name = name;
+  this.body = body;
   this.attributes = [];
   this.elements = [];
 };
@@ -42,17 +43,14 @@ Element.prototype.getXML = function () {
     xml += ' ' + attribute.key + '="' + attribute.value + '"';
   });
 
-  if (this.elements.length) {
-    xml += '>';
+  xml += this.elements.length || this.body ? '>' : '/>';
+  xml += this.body ? this.body : '';
 
-    this.elements.forEach(function (element) {
-      xml += element.getXML();
-    });
+  this.elements.forEach(function (element) {
+    xml += element.getXML();
+  });
 
-    xml += '</' + this.name + '>';
-  } else {
-    xml += '/>';
-  }
+  xml += this.elements.length || this.body ? '</' + this.name + '>' : '';
 
   return xml;
 };

@@ -15,13 +15,14 @@ var Element = function (name, body) {
   this.elements = [];
 };
 
-// Adds an attribute onto the attributes array. These attributes are added as a
-// key/value pair.
-Element.prototype.addAttribute = function (key, value) {
-  this.attributes.push({
-    key: key,
-    value: value
-  });
+// Adds a single attribute to the attributes array.
+Element.prototype.addAttribute = function (attribute) {
+  this.attributes.push(attribute);
+};
+
+// Adds an array of attributes to the attributes array.
+Element.prototype.addAttributes = function (attributes) {
+  this.attributes = this.attributes.concat(attributes);
 };
 
 // Adds a single child element to the elements array.

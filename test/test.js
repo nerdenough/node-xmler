@@ -20,7 +20,10 @@ describe('Element', function () {
   describe('#addAttribute', function () {
     it('should add a single attribute to the attributes array', function () {
       var element = new xmler.Element('element');
-      element.addAttribute('key', 'value');
+      element.addAttribute({
+        key: 'key',
+        value: 'value'
+      });
 
       expect(element.attributes[0].key).to.equal('key');
       expect(element.attributes[0].value).to.equal('value');
@@ -31,7 +34,10 @@ describe('Element', function () {
       var element = new xmler.Element('element');
 
       for (var i = 0; i < 100; i++) {
-        element.addAttribute('key' + i, 'value' + i);
+        element.addAttribute({
+          key: 'key' + i,
+          value: 'value' + i
+        });
         expect(element.attributes[i].key).to.equal('key' + i);
         expect(element.attributes[i].value).to.equal('value' + i);
       }
@@ -116,7 +122,10 @@ describe('Element', function () {
 
     it('should convert an element with attributes to xml', function () {
       var element = new xmler.Element('element');
-      element.addAttribute('key', 'value');
+      element.addAttribute({
+        key: 'key',
+        value: 'value'
+      });
 
       expect(element.getXML()).to.equal('<element key="value"/>');
     });
@@ -130,7 +139,10 @@ describe('Element', function () {
 
     it('should convert an element with attributes and children to xml', function () {
       var element = new xmler.Element('element');
-      element.addAttribute('key', 'value');
+      element.addAttribute({
+        key: 'key',
+        value: 'value'
+      });
       element.addElement(new xmler.Element('child'));
 
       expect(element.getXML()).to.equal('<element key="value"><child/></element>');
@@ -140,11 +152,15 @@ describe('Element', function () {
       var element = new xmler.Element('element');
       var child = new xmler.Element('child');
       var grandchild = new xmler.Element('grandchild');
+      var attr = {
+        key: 'key',
+        value: 'value'
+      };
 
-      grandchild.addAttribute('key', 'value');
-      child.addAttribute('key', 'value');
+      grandchild.addAttribute(attr);
+      child.addAttribute(attr);
       child.addElement(grandchild);
-      element.addAttribute('key', 'value');
+      element.addAttribute(attr);
       element.addElement(child);
 
       var answer = '<element key="value">';
@@ -159,11 +175,15 @@ describe('Element', function () {
       var element = new xmler.Element('element', 'hello world');
       var child = new xmler.Element('child', 'foo');
       var grandchild = new xmler.Element('grandchild', 'bar');
+      var attr = {
+        key: 'key',
+        value: 'value'
+      };
 
-      grandchild.addAttribute('key', 'value');
-      child.addAttribute('key', 'value');
+      grandchild.addAttribute(attr);
+      child.addAttribute(attr);
       child.addElement(grandchild);
-      element.addAttribute('key', 'value');
+      element.addAttribute(attr);
       element.addElement(child);
 
       var answer = '<element key="value">hello world';

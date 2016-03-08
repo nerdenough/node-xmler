@@ -46,6 +46,47 @@ describe('Element', function () {
     });
   });
 
+  describe('#addAttributes', function () {
+    it('should add an array of attributes onto an empty attributes array', function () {
+      var element = new xmler.Element('element');
+      var attr = [];
+
+      for (var i = 0; i < 3; i++) {
+        attr.push({
+          key: 'key',
+          value: 'value'
+        });
+      }
+
+      element.addAttributes(attr);
+
+      expect(element.attributes.length).to.equal(3);
+    });
+
+    it('should add an array of attributes onto an existing attributes array', function () {
+      var element = new xmler.Element('element');
+      var attr = [];
+
+      element.addAttribute({
+        key: 'key',
+        value: 'value'
+      });
+
+      for (var i = 0; i < 3; i++) {
+        attr.push({
+          key: 'key' + i,
+          value: 'value' + i
+        });
+      }
+
+      element.addAttributes(attr);
+
+      expect(element.attributes[1].key).to.equal('key0');
+      expect(element.attributes[1].value).to.equal('value0');
+      expect(element.attributes.length).to.equal(4);
+    });
+  });
+
   describe('#addElement', function () {
     it('should add a single element to the elements array', function () {
       var element = new xmler.Element('element');

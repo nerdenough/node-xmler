@@ -1,7 +1,7 @@
 {
   "name": "node-xmler",
   "description": "A simple package for creating XML elements",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "./xmler.js",
   "license": "MIT",
   "author": {

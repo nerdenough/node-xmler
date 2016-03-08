@@ -1,0 +1,33 @@
+{
+  "name": "node-xmler",
+  "description": "A simple package for creating XML elements",
+  "version": "0.0.1",
+  "main": "./xmler.js",
+  "license": "MIT",
+  "author": {
+    "name": "Brendan Goodenough",
+    "email": "brendan@goodenough.nz",
+    "url": "https://www.goodenough.nz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerdenough/node-xmler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nerdenough/node-xmler/issues"
+  },
+  "homepage": "https://github.com/nerdenough/node-xmler#readme",
+  "keywords": [
+    "node",
+    "xml",
+    "xmler"
+  ],
+  "scripts": {
+    "test": "gulp test"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0"
+  }
+}
